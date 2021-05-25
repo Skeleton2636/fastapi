@@ -22,17 +22,17 @@ def home():
 def get_courses():
     return fakedb
 
-@app.get('/page/{course_id}')
-def get_course_id(course_id: int):
-    course = course_id - 1
+@app.get('/page/{integer}')
+def get_course_id(integer: int):
+    course = integer - 1
     return fakedb[course]
 
 @app.post("/page")
-def add_course(course: Init):
-    fakedb.append(course.dict())
+def add_course(item: Init):
+    fakedb.append(item.dict())
     return fakedb[-1]
 
-@app.delete("/page/{course_id}")
-def delete_course(course_id: int):
-    fakedb.pop(course_id-1)
+@app.delete("/page/{integer}")
+def delete_course(integer: int):
+    fakedb.pop(integer-1)
     return {"Task": "Successful"}
